@@ -6,26 +6,26 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-O pacote dail () faz o download dos arquivos disponibilizados pela
-Controladoria-Geral da União (CGU) referentes aos dados da Lei de Acesso
-à Informação (LAI) - Lei 12.527/2011 -, busca nas perguntas por
-determinada palavra-chave e retorna os dados dos pedidos e suas
-respectivas respostas na forma de um dataframe. É possível acessar os
-dados dos pedidos do ano de 2015 até 2021.
+O pacote DAIL (Data from Access to Information Law) faz o download dos
+arquivos disponibilizados pela Controladoria-Geral da União (CGU)
+referentes aos dados da Lei de Acesso à Informação (LAI) - Lei
+12.527/2011 -, busca nos pedidos por determinada palavra-chave e retorna
+os dados dos pedidos e suas respectivas respostas na forma de um
+dataframe. É possível acessar os dados dos pedidos feitos desde 2015.
 
 ## Instalação
 
 Para instalar via [CRAN](https://CRAN.R-project.org):
 
 ``` r
-install.packages("dalair")
+install.packages("dail")
 ```
 
 Para instalar a versão em desenvolvimento [GitHub](https://github.com/):
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("igorlaltuf/delair")
+devtools::install_github("igorlaltuf/dail")
 ```
 
 ## Exemplo
@@ -33,27 +33,27 @@ devtools::install_github("igorlaltuf/delair")
 Carregar o pacote:
 
 ``` r
-library(dalair)
+library(dail)
 ```
 
 Buscar por todos os pedidos de acesso à informação que contêm a palavra
 “PAC” entre os anos de 2015 e 2021:
 
 ``` r
-consulta_pedidos(busca = 'PAC')
+requests(search = 'PAC')
 ```
 
 Buscar os pedidos apenas para anos específicos:
 
 ``` r
 intervalo <- c(2016,2017,2018)
-consulta_pedidos(ano = intervalo, busca = 'PAC')
+requests(year = intervalo, search = 'PAC')
 ```
 
 Para citar em trabalhos, use:
 
 ``` r
-citation('dalair')
+citation('dail')
 ```
 
 Dicionário de dados:
