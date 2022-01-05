@@ -1,0 +1,20 @@
+Package: dail
+Title: Data from Access to Information Law
+Version: 0.0.0.9000
+Authors@R: 
+    person("Igor", "Laltuf", , "igorlaltuf@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5614-4404"))
+Description: The package downloads the data made available by the Brazilian government and enable to query the requests made to Brazilian federal government through Right to Information Law since 2015.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    dplyr,
+    magrittr,
+    plyr,
+    R.utils,
+    readr,
+    stringr,
+    tidytext
