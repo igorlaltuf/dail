@@ -57,9 +57,10 @@ requests(year = intervalo, search = 'PAC')
 
 Para citar em trabalhos, use:
 
-``` r
+```{r}
 citation('dail')
 ```
+
 
 Dicionário de dados:
 

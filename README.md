@@ -54,6 +54,20 @@ Para citar em trabalhos, use:
 
 ``` r
 citation('dail')
+#> 
+#> To cite dail in publications use:
+#> 
+#>   LALTUF, Igor. Data from Access to Information Law. 2022. Available
+#>   in: https://github.com/igorlaltuf/dail.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Misc{,
+#>     title = {Data from Access to Information Law - DAIL},
+#>     author = {Igor Laltuf},
+#>     year = {2022},
+#>     url = {https://github.com/igorlaltuf/dail},
+#>   }
 ```
 
 Dicionário de dados:
