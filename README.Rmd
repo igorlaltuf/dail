@@ -67,10 +67,10 @@ requests(year = intervalo, search = 'PAC')
 ## "Mas eu não sei usar o R e preciso desses dados. O que eu faço?"
 
 ``` r
-# Insira a palavra-chave no campo abaixo indicado em capslock.
-# Execute o código abaixo (Ctrl + A + Enter).
+# Insira a(s) palavra(s) que você procura no código abaixo onde está escrito 'DIGITE AQUI' (mantenha as aspas simples).
+# Execute o código com a atalho Ctrl + A + Enter.
 # Na janela que será aberta, selecione a pasta onde o arquivo será salvo.
-# Procure pelo arquivo dados_LAI.csv.
+# Procure pelo arquivo dados_LAI.csv dentro da pasta selecionada no passo anterior.
 
 x <- requests(search = 'DIGITE AQUI')
 write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv'))
