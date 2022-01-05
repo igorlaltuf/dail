@@ -50,6 +50,8 @@ intervalo <- c(2016,2017,2018)
 requests(year = intervalo, search = 'PAC')
 ```
 
+## Citação
+
 Para citar em trabalhos, use:
 
 ``` r
@@ -70,7 +72,7 @@ citation('dail')
 #>   }
 ```
 
-Dicionário de dados:
+## Dicionário de dados
 
 -   Protocolo: número do protocolo do pedido;
 -   Orgão: nome do órgão destinatário do pedido;
