@@ -63,6 +63,20 @@ Buscar os pedidos apenas para anos específicos:
 intervalo <- c(2016,2017,2018)
 requests(year = intervalo, search = 'PAC')
 ```
+
+Mas eu não sei usar o R e preciso acessar esses dados. O que fazer?
+
+``` r
+# Insira a palavra-chave no campo abaixo indicado em capslock.
+# Execute o código abaixo (Ctrl + A + Enter).
+# Na janela que será aberta, selecione a pasta onde o arquivo será salvo.
+# Procure pelo arquivo dados_LAI.csv.
+
+x <- requests(search = 'DIGITE AQUI')
+write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv'))
+
+```
+
 ## Citação
 Para citar em trabalhos, use:
 
