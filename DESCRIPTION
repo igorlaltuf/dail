@@ -16,5 +16,6 @@ Imports:
     plyr,
     R.utils,
     readr,
+    stopwords,
     stringr,
     tidytext

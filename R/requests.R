@@ -15,6 +15,12 @@ utils::globalVariables(c("X1", "X2", "X3","X4","X5","X6","X7","X8","X9",
 #'
 #' @export
 requests <- function(year = 'all', search) {
+  `%!in%` = Negate(`%in%`) # criar um operador de negação
+  if(sum(stringr::str_count(search, '\\w+')) > 1){
+    search <- unlist(strsplit(search, split = " "))
+    search <- search[search %!in% stopwords::stopwords('portuguese')] # remove the stopwords
+  }
+
   search <- tolower(search)
   tabela <- data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
   nomes.colunas <- c('id_pedido','protocolo','esfera','orgao','situacao','data_registro','resumo','detalhamento','prazo',
@@ -99,18 +105,35 @@ requests <- function(year = 'all', search) {
   lista.tabelas <- split(tabela, rep(1:ceiling(nr/n), each = n, length.out = nr))
   rm(list = 'tabela')
 
+
   for(i in 1:length(lista.tabelas)){
     # creates a partial table
-    tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
-      tidytext::unnest_tokens('palavras', paste0('X', i,'.detalhamento'), drop = F) %>%
-      dplyr::filter(palavras %in% search) %>%
-      unique()
+      tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
+        tidytext::unnest_tokens('palavras', paste0('X', i,'.detalhamento'), drop = F) %>%
+        dplyr::filter(palavras %in% search) %>%
+        unique()
+
     colnames(tabela.parcial) <- c('protocolo','orgao','situacao','data_registro','resumo','detalhamento','prazo',
                                   'foi_prorrogado','foi_reencaminhado','forma_resposta','origem_da_solicitacao',
-                                  'assunto','data_resposta','resposta','decisao','especificacao_decisao')
+                                  'assunto','data_resposta','resposta','decisao','especificacao_decisao','palavras')
 
     tabela.final <- rbind(tabela.final, tabela.parcial)
   }
-  tabela.final <- tabela.final %>% dplyr::select(1:16)
+
+
+
+  if(sum(stringr::str_count(search, '\\w+')) > 1){
+    count <- tabela.final %>%
+      dplyr::group_by(protocolo) %>%
+      dplyr::count()
+
+    tabela.final <- tabela.final %>%
+      dplyr::left_join(count) %>%
+      dplyr::filter(n >= sum(stringr::str_count(search, '\\w+')))
+
+  }
+
+
+  tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
   return(tabela.final)
 }
