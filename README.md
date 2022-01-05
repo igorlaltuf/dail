@@ -43,7 +43,7 @@ Buscar por todos os pedidos de acesso à informação que contêm a palavra
 requests(search = 'PAC')
 ```
 
-Também é possível pesquisar usando mais de uma palavra:
+Também é possível pesquisar os pedidos que contenham as mesmas palavras:
 
 ``` r
 requests(search = 'Programa de Aceleração do Crescimento')

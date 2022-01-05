@@ -91,7 +91,6 @@ requests <- function(year = 'all', search) {
     tabela <- rbind(tabela, dados)
 
     rm(list = c(paste0('pedidos', i)),'dados','var') # remove variável para liberar RAM
-    #rm(list = 'dados')
   }
 
   # Otimizar busca para reduzir o consumo de memória RAM
@@ -120,8 +119,6 @@ requests <- function(year = 'all', search) {
     tabela.final <- rbind(tabela.final, tabela.parcial)
   }
 
-
-
   if(sum(stringr::str_count(search, '\\w+')) > 1){
     count <- tabela.final %>%
       dplyr::group_by(protocolo) %>%
@@ -130,9 +127,7 @@ requests <- function(year = 'all', search) {
     tabela.final <- tabela.final %>%
       dplyr::left_join(count) %>%
       dplyr::filter(n >= sum(stringr::str_count(search, '\\w+')))
-
   }
-
 
   tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
   return(tabela.final)
