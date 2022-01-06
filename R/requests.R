@@ -1,6 +1,5 @@
 # Script containing the function to query the requests made to Brazilian federal government through Right to Information Law
 # The search argument takes a string that must be found in the 'detalhamento' column
-
 #' Query the requests made through Right to Information Law to Brazilian federal government
 #'
 #' Download data from the CGU for the selected years, apply a filter and return the data in the form of a dataframe
