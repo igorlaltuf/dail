@@ -38,7 +38,7 @@ install.packages("dail")
 Para instalar a versão em desenvolvimento [GitHub](https://github.com/):
 
 ``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("igorlaltuf/dail")
 ```
 ## Exemplo
@@ -74,13 +74,16 @@ requests(year = intervalo, search = 'PAC')
 ## "Mas eu não sei usar o R e preciso desses dados. O que eu faço?"
 
 ``` r
-# Insira a(s) palavra(s) que você procura no código abaixo onde está escrito 'DIGITE AQUI' (mantenha as aspas simples).
+# Insira a(s) palavra(s) que você procura no código abaixo onde está escrito 'DIGITE AQUI'.
 # Execute o código com a atalho Ctrl + A + Enter.
 # Na janela que será aberta, selecione a pasta onde o arquivo será salvo.
 # Procure pelo arquivo dados_LAI.csv dentro da pasta selecionada no passo anterior.
 
-x <- requests(search = 'DIGITE AQUI')
-write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv'))
+install.packages("devtools") # instala o pacote devtools
+devtools::install_github("igorlaltuf/dail") # instala o pacote dail
+library(dail) # carrega o pacote dail
+x <- requests(search = 'DIGITE AQUI') # faz a pesquisa
+write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv')) # exporta no formato csv
 
 ```
 
