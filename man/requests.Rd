@@ -17,3 +17,6 @@ a dataframe with requests to access information containing the keyword
 \description{
 Download data from the CGU for the selected years, apply a filter and return the data in the form of a dataframe
 }
+\examples{
+requests(year = 2021, search = 'ovni')
+}
