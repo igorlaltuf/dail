@@ -13,7 +13,11 @@ referentes aos dados da Lei de Acesso à Informação (LAI) - Lei
 os dados dos pedidos e suas respectivas respostas na forma de um
 dataframe. É possível acessar os dados dos pedidos feitos desde 2015.
 
-![](inst/meme.PNG)
+``` r
+knitr::include_graphics("inst/meme.png")
+```
+
+<img src="inst/meme.png" width="100%" />
 
 ## Instalação
 
