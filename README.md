@@ -13,6 +13,8 @@ referentes aos dados da Lei de Acesso à Informação (LAI) - Lei
 os dados dos pedidos e suas respectivas respostas na forma de um
 dataframe. É possível acessar os dados dos pedidos feitos desde 2015.
 
+![](inst/meme.PNG)
+
 ## Instalação
 
 Para instalar via [CRAN](https://CRAN.R-project.org):
