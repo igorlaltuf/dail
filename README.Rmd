@@ -21,8 +21,8 @@ knitr::opts_chunk$set(
 O pacote DAIL (Data from Access to Information Law) faz o download dos arquivos disponibilizados pela Controladoria-Geral da União (CGU) referentes aos dados da Lei de Acesso à Informação (LAI) - Lei 12.527/2011 -, busca nos pedidos por determinada palavra-chave e retorna os dados dos pedidos e suas respectivas respostas na forma de um dataframe. É possível acessar os dados dos pedidos feitos desde 2015.
 
 ```{r echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("inst/meme1.jpg")
-knitr::include_graphics("inst/meme2.jpg")
+knitr::include_graphics("inst/meme.png")
+
 ```
 
 
