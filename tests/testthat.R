@@ -1,4 +1,4 @@
-library(testthat)
-library(dail)
-
-test_check("dail")
+# library(testthat)
+# library(dail)
+#
+# test_check("dail")
