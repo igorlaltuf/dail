@@ -8,8 +8,6 @@
 #' @param search select the keyword to be searched
 #'
 #' @return a dataframe with requests to access information containing the keyword
-#' @examples
-#' requests(year = 2021, search = 'ovni')
 #' @export
 requests <- function(year = 'all', search) {
   protocolo <- palavras <- download.file <- unzip <- X1 <- X2 <- X3 <- X4 <- X5 <- X6 <- X7 <- X8 <- X9 <- X10 <- X11 <- X12 <- X13 <- X14 <- X15 <- X16 <- X17 <- X18 <- X19 <- X20 <- X21 <-NULL
