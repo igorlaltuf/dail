@@ -1,9 +1,9 @@
 # Script containing the function to query the requests made to Brazilian federal government through Right to Information Law
 # The search argument takes a string that must be found in the 'detalhamento' column
-utils::globalVariables(c("X1", "X2", "X3","X4","X5","X6","X7","X8","X9",
-                         "X10","X11","X12","X13","X14","X15","X16","X17",
-                         "X18","X19","X20","X21","palavras","download.file",
-                         "unzip","protocolo"))
+# utils::globalVariables(c("X1", "X2", "X3","X4","X5","X6","X7","X8","X9",
+#                          "X10","X11","X12","X13","X14","X15","X16","X17",
+#                          "X18","X19","X20","X21","palavras","download.file",
+#                          "unzip","protocolo"))
 
 #' Query the requests made through Right to Information Law to Brazilian federal government
 #'
@@ -16,6 +16,7 @@ utils::globalVariables(c("X1", "X2", "X3","X4","X5","X6","X7","X8","X9",
 #'
 #' @export
 requests <- function(year = 'all', search) {
+  protocolo <- palavras <- download.file <- unzip <- X1 <- X2 <- X3 <- X4 <- X5 <- X6 <- X7 <- X8 <- X9 <- X10 <- X11 <- X12 <- X13 <- X14 <- X15 <- X16 <- X17 <- X18 <- X19 <- X20 <- X21 <-NULL
   `%!in%` = Negate(`%in%`) # criar um operador de negação
   if(sum(stringr::str_count(search, '\\w+')) > 1){
     search <- unlist(strsplit(search, split = " "))
