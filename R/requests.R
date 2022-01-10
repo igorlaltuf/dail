@@ -3,7 +3,6 @@
 #' Query the requests made through Right to Information Law to Brazilian federal government
 #'
 #' Download data from the CGU for the selected years, apply a filter and return the data in the form of a dataframe
-#'
 #' @param year selects which years data will be downloaded
 #' @param search select the keyword to be searched
 #'

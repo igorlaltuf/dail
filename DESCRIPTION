@@ -13,8 +13,6 @@ RoxygenNote: 7.1.2
 Imports: 
     dplyr,
     magrittr,
-    plyr,
-    R.utils,
     readr,
     stopwords,
     stringr,
