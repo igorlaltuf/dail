@@ -43,17 +43,10 @@ devtools::install_github("igorlaltuf/dail")
 ```
 ## Exemplo
 
-Carregar o pacote:
-
-``` r
-library(dail)
-
-```
-
 Buscar por todos os pedidos de acesso à informação que contêm a palavra "PAC" entre os anos de 2015 e 2021:
 
 ``` r
-requests(search = 'PAC')
+requests(search = 'PAC') 
 
 ```
 
@@ -75,14 +68,13 @@ requests(year = intervalo, search = 'PAC')
 
 ``` r
 # Insira a(s) palavra(s) que você procura no código abaixo onde está escrito 'DIGITE AQUI'.
-# Execute o código com a atalho Ctrl + A + Enter.
-# Na janela que será aberta, selecione a pasta onde o arquivo será salvo.
-# Procure pelo arquivo dados_LAI.csv dentro da pasta selecionada no passo anterior.
+# Execute o código (atalho: Ctrl + A + Enter).
+# Na janela que será aberta, selecione a pasta onde o arquivo no formato csv será salvo.
 
-install.packages('dail') # instala o pacote
-library(dail) # carrega o pacote 
-x <- requests(search = 'DIGITE AQUI') # faz a pesquisa
-write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv')) # exporta no formato csv
+install.packages('dail') 
+library(dail) 
+x <- requests(search = 'DIGITE AQUI') 
+write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv')) 
 
 ```
 
