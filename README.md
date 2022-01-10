@@ -6,6 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+Versão: 1.1
+
 O pacote DAIL (Data from Access to Information Law) faz o download dos
 arquivos disponibilizados pela Controladoria-Geral da União (CGU)
 referentes aos dados da Lei de Acesso à Informação (LAI) - Lei
@@ -21,6 +23,7 @@ Para instalar via [CRAN](https://CRAN.R-project.org):
 
 ``` r
 install.packages("dail")
+library(dail)
 ```
 
 Para instalar a versão em desenvolvimento [GitHub](https://github.com/):
@@ -28,6 +31,7 @@ Para instalar a versão em desenvolvimento [GitHub](https://github.com/):
 ``` r
 install.packages("devtools")
 devtools::install_github("igorlaltuf/dail")
+library(dail)
 ```
 
 ## Exemplo

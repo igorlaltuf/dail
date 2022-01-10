@@ -14,6 +14,15 @@
 requests <- function(year = 'all', search) {
   protocolo <- palavras <- download.file <- unzip <- X1 <- X2 <- X3 <- X4 <- X5 <- X6 <- X7 <- X8 <- X9 <- X10 <- X11 <- X12 <- X13 <- X14 <- X15 <- X16 <- X17 <- X18 <- X19 <- X20 <- X21 <-NULL
   `%!in%` = Negate(`%in%`) # criar um operador de negação
+  year.all <- c(2015,2016,2017,2018,2019,2020,2021,2022)
+
+  # if the user does not enter the year, data for all years will be downloaded
+  if (year == 'all') {
+    year <- year.all
+  }
+  # creates a vector with all links from CGU files
+  links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.all, '.zip')
+
   if(sum(stringr::str_count(search, '\\w+')) > 1){
     search <- unlist(strsplit(search, split = " "))
     search <- search[search %!in% stopwords::stopwords('portuguese')] # remove the stopwords
@@ -29,23 +38,13 @@ requests <- function(year = 'all', search) {
     dplyr::select(2,4:13,15,18:21)
 
   dir.temp <- tempdir()
-  links <- c('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2015.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2016.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2017.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2018.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2019.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2020.zip',
-             'https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_2021.zip')
 
-  # if the user does not enter the year, data for all years will be downloaded
-  if (year == 'all') {
-    year <- c(2015,2016,2017,2018,2019,2020,2021)
-  }
+
 
   # allows to include more than one year at a time with a vector
   for(i in year) {
     year <- paste0('link', i)
-    x <- c('link2015','link2016','link2017','link2018','link2019','link2020','link2021')
+    x <- c('link2015','link2016','link2017','link2018','link2019','link2020','link2021','link2022')
     x <- match(year, x) # returns the position of the matching string
 
     # check if the files of the years have already been downloaded
@@ -55,22 +54,28 @@ requests <- function(year = 'all', search) {
     #
     # Download data from the CGU for the selected years.
     download_lai <- function() {
-      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '\\')) # fazer com que o nome do arquivo seja dinâmico
-      # Extrair os arquivos baixados e excluir arquivos zip
+      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '\\')) # names the files according to the links
+      # Extract the downloaded files
       lista.arquivos <- list.files(path = dir.temp, pattern = "*.zip", full.names = TRUE)
       mapply(unzip, zipfile = lista.arquivos, exdir = dir.temp)
     }
 
     # procurar por '_2021' porque todos os arquivos contém 2021 no nome
-    if (any(grepl(paste0('_', i), lista.arquivos.locais)) == F | length(lista.arquivos.locais) == 0) {
-      download_lai()
+    if(any(grepl(paste0('_', i), lista.arquivos.locais)) == T) {
+      print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
     } else{
-      if(i < 2021){
-        print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
-      } else {
-        download_lai()
-      }
+      download_lai()
     }
+
+    # if (any(grepl(paste0('_', i), lista.arquivos.locais)) == F | length(lista.arquivos.locais) == 0) {
+    #   download_lai()
+    # } else{
+    #   if(i < 2021){
+    #     print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
+    #   } else {
+    #     download_lai()
+    #   }
+    # }
 
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
     caminho.arquivo <- stringr::str_subset(lista.arquivos.locais, paste0("Pedidos_csv_",i))
@@ -79,17 +84,13 @@ requests <- function(year = 'all', search) {
                     data_registro = X6, resumo = X7, detalhamento = X8, prazo = X9, foi_prorrogado = X10,
                     foi_reencaminhado = X11, forma_resposta = X12, origem_da_solicitacao = X13,
                     id_solicitante = X14, assunto = X15, sub_assunto = X16, tag = X17,
-                    data_resposta = X18, resposta = X19, decisao = X20, especificacao_decisao = X21)
-    assign(paste0('pedidos', i), var)
-
-
-    dados <- get(paste0('pedidos', i)) %>%
+                    data_resposta = X18, resposta = X19, decisao = X20, especificacao_decisao = X21) %>%
       dplyr::select(2,4:13,15,18:21)
 
-    tabela <- rbind(tabela, dados)
-
-    rm(list = c(paste0('pedidos', i)),'dados','var') # remove variável para liberar RAM
+    tabela <- rbind(tabela, var)
   }
+
+
 
   # Otimizar busca para reduzir o consumo de memória RAM
   tabela.final <-  data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
