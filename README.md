@@ -66,9 +66,8 @@ requests(year = intervalo, search = 'PAC')
 # Na janela que será aberta, selecione a pasta onde o arquivo será salvo.
 # Procure pelo arquivo dados_LAI.csv dentro da pasta selecionada no passo anterior.
 
-install.packages("devtools") # instala o pacote devtools
-devtools::install_github("igorlaltuf/dail") # instala o pacote dail
-library(dail) # carrega o pacote dail
+install.packages('dail') # instala o pacote
+library(dail) # carrega o pacote 
 x <- requests(search = 'DIGITE AQUI') # faz a pesquisa
 write.csv2(x, file = paste0(choose.dir(),'\\dados_LAI.csv')) # exporta no formato csv
 ```
