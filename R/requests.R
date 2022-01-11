@@ -1,8 +1,7 @@
-# Script containing the function to query the requests made to Brazilian federal government through Right to Information Law
-# The search argument takes a string that must be found in the 'detalhamento' column
 #' Query the requests made through Right to Information Law to Brazilian federal government
 #'
 #' Download data from the CGU for the selected years, apply a filter and return the data in the form of a dataframe
+#'
 #' @param year selects which years data will be downloaded
 #' @param search select the keyword to be searched
 #'
@@ -11,22 +10,19 @@
 #' \dontrun{requests(search = 'PAC')}
 #' @export
 requests <- function(year = 'all', search) {
-  protocolo <- palavras <- download.file <- unzip <- X1 <- X2 <- X3 <- X4 <- X5 <- X6 <- X7 <- X8 <- X9 <- X10 <- X11 <- X12 <- X13 <- X14 <- X15 <- X16 <- X17 <- X18 <- X19 <- X20 <- X21 <-NULL
-  `%!in%` = Negate(`%in%`) # criar um operador de negação
-  year.all <- c(2015,2016,2017,2018,2019,2020,2021,2022)
-
+  old <- Sys.time() # to calculate execution time
+  year.options <- c(2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
+  links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
   # if the user does not enter the year, data for all years will be downloaded
   if (year == 'all') {
-    year <- year.all
+    year <- year.options
   }
-  # creates a vector with all links from CGU files
-  links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.all, '.zip')
-
+  protocolo <- palavras <- download.file <- unzip <- NULL
+  `%!in%` = Negate(`%in%`) # creates operator
   if(sum(stringr::str_count(search, '\\w+')) > 1){
     search <- unlist(strsplit(search, split = " "))
     search <- search[search %!in% stopwords::stopwords('portuguese')] # remove the stopwords
   }
-
   search <- tolower(search)
   tabela <- data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
   nomes.colunas <- c('id_pedido','protocolo','esfera','orgao','situacao','data_registro','resumo','detalhamento','prazo',
@@ -35,10 +31,7 @@ requests <- function(year = 'all', search) {
   colnames(tabela) <- nomes.colunas
   tabela <- tabela %>%
     dplyr::select(2,4:13,15,18:21)
-
   dir.temp <- tempdir()
-
-
 
   # allows to include more than one year at a time with a vector
   for(i in year) {
@@ -49,49 +42,42 @@ requests <- function(year = 'all', search) {
     # check if the files of the years have already been downloaded
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
 
+    # para o nome do arquiv
+    data <- Sys.Date()
+    pontos <- "a1~!@#$%^&*(){}_+:\"<>?,./;'[]-="
+    dia.arquivo <- stringr::str_replace_all(data, "[[:punct:]]", "")
+
     # download_lai
     #
     # Download data from the CGU for the selected years.
     download_lai <- function() {
-      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '\\')) # names the files according to the links
-      # Extract the downloaded files
-      lista.arquivos <- list.files(path = dir.temp, pattern = "*.zip", full.names = TRUE)
-      mapply(unzip, zipfile = lista.arquivos, exdir = dir.temp)
+      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '\\')) # fazer com que o nome do arquivo seja dinâmico
     }
 
-    # procurar por '_2021' porque todos os arquivos contém 2021 no nome
+
+    # checks if the file has been previously downloaded
     if(any(grepl(paste0('_', i), lista.arquivos.locais)) == T) {
       print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
     } else{
       download_lai()
+      # list zip files from the year
+      lista.arquivos <- list.files(path = dir.temp, pattern = paste0("Arquivos_csv_", i, ".zip"), full.names = TRUE)
+      # extract only requests files the downloaded files
+      unzip(zipfile = lista.arquivos, exdir = dir.temp, files = paste0(dia.arquivo,"_Pedidos_csv_",i,".csv"))
     }
 
-    # if (any(grepl(paste0('_', i), lista.arquivos.locais)) == F | length(lista.arquivos.locais) == 0) {
-    #   download_lai()
-    # } else{
-    #   if(i < 2021){
-    #     print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
-    #   } else {
-    #     download_lai()
-    #   }
-    # }
-
+    # read the files
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
     caminho.arquivo <- stringr::str_subset(lista.arquivos.locais, paste0("Pedidos_csv_",i))
-    var <- readr::read_csv2(file = caminho.arquivo, col_names = FALSE, quote = '\'', locale = readr::locale(encoding="UTF-16LE")) %>%
-      dplyr::rename(id_pedido = X1, protocolo = X2, esfera = X3, orgao = X4, situacao = X5,
-                    data_registro = X6, resumo = X7, detalhamento = X8, prazo = X9, foi_prorrogado = X10,
-                    foi_reencaminhado = X11, forma_resposta = X12, origem_da_solicitacao = X13,
-                    id_solicitante = X14, assunto = X15, sub_assunto = X16, tag = X17,
-                    data_resposta = X18, resposta = X19, decisao = X20, especificacao_decisao = X21) %>%
+    var <- readr::read_csv2(file = caminho.arquivo, col_names = FALSE, quote = '\'', locale = readr::locale(encoding="UTF-16LE")) # %>%
+    colnames(var) <- nomes.colunas
+    var <- var %>%
       dplyr::select(2,4:13,15,18:21)
-
     tabela <- rbind(tabela, var)
+    rm(list = 'var') # remove variável para liberar RAM
   }
 
-
-
-  # Otimizar busca para reduzir o consumo de memória RAM
+  # Optimize search to reduce RAM consumption
   tabela.final <-  data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
   colnames(tabela.final) <- nomes.colunas
   tabela.final <- tabela.final %>%
@@ -102,13 +88,12 @@ requests <- function(year = 'all', search) {
   lista.tabelas <- split(tabela, rep(1:ceiling(nr/n), each = n, length.out = nr))
   rm(list = 'tabela')
 
-
   for(i in 1:length(lista.tabelas)){
     # creates a partial table
-      tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
-        tidytext::unnest_tokens('palavras', paste0('X', i,'.detalhamento'), drop = F) %>%
-        dplyr::filter(palavras %in% search) %>%
-        unique()
+    tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
+      tidytext::unnest_tokens('palavras', paste0('X', i,'.detalhamento'), drop = F) %>%
+      dplyr::filter(palavras %in% search) %>%
+      unique()
 
     colnames(tabela.parcial) <- c('protocolo','orgao','situacao','data_registro','resumo','detalhamento','prazo',
                                   'foi_prorrogado','foi_reencaminhado','forma_resposta','origem_da_solicitacao',
@@ -128,5 +113,8 @@ requests <- function(year = 'all', search) {
   }
 
   tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
+  new <- Sys.time() - old # calculate difference
+  print(paste0('Consulta finalizada em ', round(new, 2),' segundos.'))
+  print(paste0('Query completed in ', round(new, 2),' seconds'))
   return(tabela.final)
 }
