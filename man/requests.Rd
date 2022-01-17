@@ -2,20 +2,20 @@
 % Please edit documentation in R/requests.R
 \name{requests}
 \alias{requests}
-\title{Query the requests made through Right to Information Law to Brazilian federal government}
+\title{Queries the requests made through the Brazilian Right to Information Law}
 \usage{
 requests(year = "all", search)
 }
 \arguments{
-\item{year}{selects which years data will be downloaded}
+\item{year}{selects the years which data will be downloaded}
 
-\item{search}{select the keyword to be searched}
+\item{search}{selects the keyword to be searched}
 }
 \value{
-a dataframe with requests to access information containing the keyword
+a dataframe with requests containing the keyword
 }
 \description{
-Download data from the CGU for the selected years, apply a filter and return it in the form of a dataframe.
+Downloads data for the selected years, apply a filter and return it in the form of a dataframe.
 }
 \examples{
 \dontrun{requests(search = 'PAC')}

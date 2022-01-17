@@ -2,20 +2,20 @@
 % Please edit documentation in R/appeals.R
 \name{appeals}
 \alias{appeals}
-\title{Query the appeals made through Right to Information Law to Brazilian federal government}
+\title{Queries the appeals made through the Brazilian Right to Information Law}
 \usage{
 appeals(year = "all", search)
 }
 \arguments{
-\item{year}{selects which years data will be downloaded}
+\item{year}{selects the years which data will be downloaded}
 
-\item{search}{select the keyword to be searched}
+\item{search}{selects the keyword to be searched}
 }
 \value{
-a dataframe with appeals made to responses given to requests for information containing the keyword
+a dataframe with appeals containing the keyword
 }
 \description{
-Download data from the CGU for the selected years, apply a filter and return it in the form of a dataframe.
+Downloads data for the selected years, apply a filter and return it in the form of a dataframe.
 }
 \examples{
 \dontrun{appeals(search = 'PAC')}

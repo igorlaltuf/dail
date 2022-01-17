@@ -1,11 +1,12 @@
-#' Query all the requests made through Right to Information Law to Brazilian federal government
-#' Download data from the CGU for the selected years and return it in the form of a dataframe.
+#' Queries all the requests made through the Brazilian Right to Information Law
+#'
+#' Downloads all the data and return it in the form of a dataframe.
 #'
 #' @importFrom utils download.file unzip
 #'
 #' @param year selects which years data will be downloaded
 #'
-#' @return a dataframe with requests to access information containing the keyword
+#' @return a dataframe with all requests made
 #' @examples
 #' \dontrun{requests_all()}
 #' @export

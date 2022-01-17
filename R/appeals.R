@@ -1,13 +1,13 @@
-#' Query the appeals made through Right to Information Law to Brazilian federal government
+#' Queries the appeals made through the Brazilian Right to Information Law
 #'
-#' Download data from the CGU for the selected years, apply a filter and return it in the form of a dataframe.
+#' Downloads data for the selected years, apply a filter and return it in the form of a dataframe.
 #'
 #' @importFrom utils download.file unzip
 #'
-#' @param year selects which years data will be downloaded
-#' @param search select the keyword to be searched
+#' @param year selects the years which data will be downloaded
+#' @param search selects the keyword to be searched
 #'
-#' @return a dataframe with appeals made to responses given to requests for information containing the keyword
+#' @return a dataframe with appeals containing the keyword
 #' @examples
 #' \dontrun{appeals(search = 'PAC')}
 #' @export

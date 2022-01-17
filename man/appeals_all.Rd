@@ -2,7 +2,7 @@
 % Please edit documentation in R/appeals_all.R
 \name{appeals_all}
 \alias{appeals_all}
-\title{Query the appeals made through Right to Information Law to Brazilian federal government}
+\title{Queries all the appeals made through the Brazilian Right to Information Law}
 \usage{
 appeals_all(year = "all")
 }
@@ -10,10 +10,10 @@ appeals_all(year = "all")
 \item{year}{selects which years data will be downloaded}
 }
 \value{
-a dataframe with requests to access information containing the keyword
+a dataframe with all appeals made
 }
 \description{
-Download data from the CGU for the selected years, apply a filter and return it in the form of a dataframe.
+Downloads all the data and return it in the form of a dataframe.
 }
 \examples{
 \dontrun{appeals_all()}

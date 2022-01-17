@@ -2,8 +2,7 @@
 % Please edit documentation in R/requests_all.R
 \name{requests_all}
 \alias{requests_all}
-\title{Query all the requests made through Right to Information Law to Brazilian federal government
-Download data from the CGU for the selected years and return it in the form of a dataframe.}
+\title{Queries all the requests made through the Brazilian Right to Information Law}
 \usage{
 requests_all(year = "all")
 }
@@ -11,11 +10,10 @@ requests_all(year = "all")
 \item{year}{selects which years data will be downloaded}
 }
 \value{
-a dataframe with requests to access information containing the keyword
+a dataframe with all requests made
 }
 \description{
-Query all the requests made through Right to Information Law to Brazilian federal government
-Download data from the CGU for the selected years and return it in the form of a dataframe.
+Downloads all the data and return it in the form of a dataframe.
 }
 \examples{
 \dontrun{requests_all()}
