@@ -4,7 +4,7 @@ Version: 1.1
 Authors@R: 
     person("Igor", "Laltuf", , "igorlaltuf@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5614-4404"))
-Description: Downloads the public data available from the Brazilian Access to Information Law and and performs a search on information requests made since 2015. 
+Description: Downloads the public data available from the Brazilian Access to Information Law and and performs a search on information requests and appeals made since 2015. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
