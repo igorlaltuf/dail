@@ -34,7 +34,7 @@ knitr::include_graphics("inst/meme.png")
 
 ## Instalação
 
-Para instalar via [CRAN](https://CRAN.R-project.org):
+Para instalar via [CRAN](https://cran.r-project.org/web/packages/dail/index.html):
 
 ``` r
 install.packages("dail")

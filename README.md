@@ -31,7 +31,8 @@ recursos entre 2012 e 2014.
 
 ## Instalação
 
-Para instalar via [CRAN](https://CRAN.R-project.org):
+Para instalar via
+[CRAN](https://cran.r-project.org/web/packages/dail/index.html):
 
 ``` r
 install.packages("dail")
