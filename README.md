@@ -13,11 +13,12 @@
 Versão: 1.1
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
-R os dados dos pedidos e recursos no âmbito da Lei de Acesso à
-Informação (LAI) - Lei 12.527/2011. No site da Controladoria-Geral da
-União (CGU) estão disponíveis as estatísticas dos pedidos e recursos, no
-âmbito do Executivo Federal, desde o ano de 2012. Entretanto, os
-conteúdos dos pedidos, das respostas e dos recursos foram
+R - no âmbito do Executivo Federal - os dados dos pedidos e recursos
+solicitados via [Lei de Acesso à
+Informação](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm)
+(LAI). No site da Controladoria-Geral da União (CGU) estão disponíveis
+as estatísticas dos pedidos e recursos desde o ano de 2012. Entretanto,
+os conteúdos dos pedidos, das respostas e dos recursos foram
 disponibilizados apenas a partir de 2015. Segundo o órgão, isso se dá em
 função das necessidades de regulamentação e da prévia
 orientação/capacitação operacional dos órgãos federais para tal abertura
@@ -39,7 +40,8 @@ install.packages("dail")
 library(dail)
 ```
 
-Para instalar a versão em desenvolvimento [GitHub](https://github.com/):
+Para instalar a versão em desenvolvimento
+[(GitHub)](https://github.com/):
 
 ``` r
 install.packages("devtools")
@@ -47,10 +49,10 @@ devtools::install_github("igorlaltuf/dail")
 library(dail)
 ```
 
-## Exemplo
+## Exemplos
 
-Buscar por todos os pedidos de acesso à informação que contêm a palavra
-“PAC” entre os anos de 2015 e 2021:
+Solicitar todos os pedidos de acesso à informação que contêm a palavra
+“PAC” entre os anos de 2015 e 2022:
 
 ``` r
 requests(search = 'PAC') 
@@ -75,13 +77,13 @@ Baixar todos os pedidos de todos os anos:
 requests_all()
 ```
 
-Baixar os recursos que contenham a palavra ‘Programa’:
+Solicitar os recursos que contenham a palavra ‘Programa’:
 
 ``` r
 appeals(search = 'Programa')
 ```
 
-Baixar todos os recursos de todos os anos:
+Acessar todos os recursos de todos os anos:
 
 ``` r
 appeals_all()
@@ -124,7 +126,7 @@ citation('dail')
 
 ## Dicionário de dados
 
-# Pedidos
+### Pedidos
 
 -   Protocolo: número do protocolo do pedido;
 -   Orgão: nome do órgão destinatário do pedido;
@@ -148,7 +150,7 @@ citation('dail')
 -   Especificação Decisão: subtipo da resposta dada ao pedido (campo em
     branco para pedidos que ainda estejam na situação “Em Tramitação”);
 
-# Recursos
+### Recursos
 
 -   IdRecurso: identificador único do recurso (não mostrado no sistema);
 -   IdRecursoPrecedente: identificador único do recurso que precedeu
