@@ -10,7 +10,7 @@
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)  
 <!-- badges: end -->
 
-Versão: 1.1
+Versão: 1.2
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
 R - no âmbito do Executivo Federal - os dados dos pedidos e recursos
@@ -69,6 +69,13 @@ Buscar os pedidos apenas para anos específicos:
 ``` r
 intervalo <- c(2016,2017,2018)
 requests(year = intervalo, search = 'PAC')
+```
+
+Filtrar os pedidos pelo conteúdo das respostas:
+
+``` r
+intervalo <- c(2016,2017,2018)
+requests(year = intervalo, search = 'PAC', answer = T)
 ```
 
 Baixar todos os pedidos de todos os anos:
