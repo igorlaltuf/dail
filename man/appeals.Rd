@@ -4,10 +4,12 @@
 \alias{appeals}
 \title{Queries the appeals made through the Brazilian Right to Information Law}
 \usage{
-appeals(year = "all", search)
+appeals(year = "all", answer = F, search)
 }
 \arguments{
 \item{year}{selects the years which data will be downloaded}
+
+\item{answer}{if true, fetches the content of the search argument in the appeals responses}
 
 \item{search}{selects the keyword to be searched}
 }

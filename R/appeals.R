@@ -6,13 +6,18 @@
 #'
 #' @param year selects the years which data will be downloaded
 #' @param search selects the keyword to be searched
+#' @param answer if true, fetches the content of the search argument in the appeals responses
 #'
 #' @return a dataframe with appeals containing the keyword
 #' @examples
 #' \dontrun{appeals(search = 'PAC')}
 #' @export
-appeals <- function(year = 'all', search) {
+appeals <- function(year = 'all', answer = F, search) {
   old <- Sys.time() # to calculate execution time
+
+  if (answer == F) col_filter <- '.desc_recurso'
+  if (answer == T) col_filter <- '.resposta_recurso'
+
   year.options <- c(2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
   links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
   # if the user does not enter the year, data for all years will be downloaded
@@ -89,7 +94,7 @@ appeals <- function(year = 'all', search) {
   for(i in 1:length(lista.tabelas)){
     # creates a partial table
     tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
-      tidytext::unnest_tokens('palavras', paste0('X', i,'.desc_recurso'), drop = F) %>%
+      tidytext::unnest_tokens('palavras', paste0('X', i, col_filter), drop = F) %>%
       dplyr::filter(palavras %in% search) %>%
       unique()
 

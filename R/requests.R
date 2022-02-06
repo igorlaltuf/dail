@@ -13,10 +13,10 @@
 #' \dontrun{requests(search = 'PAC')}
 #' @export
 requests <- function(year = 'all', answer = F, search) {
+  old <- Sys.time() # to calculate execution time
+
   if (answer == F) col_filter <- '.detalhamento'
   if (answer == T) col_filter <- '.resposta'
-
-  old <- Sys.time() # to calculate execution time
   year.options <- c(2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
   links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
   # if the user does not enter the year, data for all years will be downloaded
