@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dail
+# dail <img src="man/figures/logo.png" align="right" height="139" />
 
 <!-- badges: start -->
 
@@ -10,9 +10,7 @@
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
 <!-- badges: end -->
 
-# dail <img src="man/figures/logo.png" align="right" height="139" />
-
-Versão: 1.2
+*Versão GitHub: 1.2*
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
 R - no âmbito do Executivo Federal - os dados dos pedidos e recursos
