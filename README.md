@@ -10,7 +10,7 @@
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
 <!-- badges: end -->
 
-# dail <img src="inst/hex/hexlogo.png" align="right" width = "120px"/>
+# dail <img src="man/figures/logo.png" align="right" height="139" />
 
 Versão: 1.2
 
