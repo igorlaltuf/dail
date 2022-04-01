@@ -64,6 +64,21 @@ Também é possível inserir mais de uma palavra no argumento search:
 requests(search = 'Programa de Aceleração do Crescimento')
 ```
 
+No argumento search, o algoritmo busca exatamente pela expressão
+informada, ou seja, ele não encontra as variações de uma mesma palavra.
+Ex: se você digitou a palavra no singular, ele não retorna os pedidos
+que contém a palavra no plural. Uma forma de contornar isso é fazendo
+mais de uma requisição:
+
+``` r
+t <- requests(search = 'ovni')
+t2 <- requests(search = 'ovnis')
+t3 <- requests(search = 'objeto voador não identificado')
+t4 <- requests(search = 'objetos voadores não identificados')
+
+total <- unique(rbind(t,t2,t3,t4))
+```
+
 Buscar os pedidos apenas para anos específicos:
 
 ``` r
@@ -81,7 +96,7 @@ requests(year = intervalo, search = 'PAC', answer = T)
 Baixar todos os pedidos de todos os anos:
 
 ``` r
-requests_all()
+requests()
 ```
 
 Solicitar os recursos que contenham a palavra ‘Programa’:
@@ -93,7 +108,7 @@ appeals(search = 'Programa')
 Acessar todos os recursos de todos os anos:
 
 ``` r
-appeals_all()
+appeals()
 ```
 
 ## “Mas eu não sei usar o R e preciso baixar os pedidos da LAI. O que eu faço?”

@@ -2,9 +2,7 @@
 
 export("%>%")
 export(appeals)
-export(appeals_all)
 export(requests)
-export(requests_all)
 importFrom(magrittr,"%>%")
 importFrom(utils,download.file)
 importFrom(utils,unzip)

@@ -4,7 +4,7 @@
 \alias{appeals}
 \title{Queries the appeals made through the Brazilian Right to Information Law}
 \usage{
-appeals(year = "all", answer = F, search)
+appeals(year = "all", answer = F, search = "all")
 }
 \arguments{
 \item{year}{selects the years which data will be downloaded}

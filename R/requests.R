@@ -12,12 +12,12 @@
 #' @examples
 #' \dontrun{requests(search = 'PAC')}
 #' @export
-requests <- function(year = 'all', answer = F, search) {
+requests <- function(year = 'all', answer = F, search = 'all') {
   old <- Sys.time() # to calculate execution time
 
   if (answer == F) col_filter <- '.detalhamento'
   if (answer == T) col_filter <- '.resposta'
-  year.options <- c(2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
+  year.options <- c(2015:format(Sys.Date(), "%Y"))
   links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
   # if the user does not enter the year, data for all years will be downloaded
   if (year == 'all') {
@@ -42,16 +42,16 @@ requests <- function(year = 'all', answer = F, search) {
   # allows to include more than one year at a time with a vector
   for(i in year) {
     year <- paste0('link', i)
-    x <- c('link2015','link2016','link2017','link2018','link2019','link2020','link2021','link2022')
+    x <- paste0('link', c(2015:format(Sys.Date(), "%Y")))
     x <- match(year, x) # returns the position of the matching string
 
     # check if the files of the years have already been downloaded
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
 
     # used to select the file to extract
-    data <- Sys.Date()
-    pontos <- "a1~!@#$%^&*(){}_+:\"<>?,./;'[]-="
-    dia.arquivo <- stringr::str_replace_all(data, "[[:punct:]]", "")
+    # data <- Sys.Date()
+    # pontos <- "a1~!@#$%^&*(){}_+:\"<>?,./;'[]-="
+    # dia.arquivo <- stringr::str_replace_all(data, "[[:punct:]]", "")
 
     # download_lai
     #
@@ -67,8 +67,10 @@ requests <- function(year = 'all', answer = F, search) {
       download_lai()
       # list zip files from the year
       lista.arquivos <- list.files(path = dir.temp, pattern = paste0("Arquivos_csv_", i, ".zip"), full.names = TRUE)
+      arquivo.pedido <- unzip(zipfile = lista.arquivos, list = T)
+      arquivo.pedido <- grep("Pedidos", arquivo.pedido$Name, value = TRUE)
       # extract only requests files the downloaded files
-      unzip(zipfile = lista.arquivos, exdir = dir.temp, files = paste0(dia.arquivo,"_Pedidos_csv_",i,".csv"))
+      unzip(zipfile = lista.arquivos, exdir = dir.temp, files = arquivo.pedido)
     }
 
     # read the files
@@ -81,6 +83,10 @@ requests <- function(year = 'all', answer = F, search) {
     tabela <- rbind(tabela, var)
     rm(list = 'var') # remove variável para liberar RAM
   }
+
+  if (search == 'all') {
+    tabela.final <- tabela
+  } else {
 
   # Optimize search to reduce RAM consumption
   tabela.final <-  data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
@@ -118,6 +124,9 @@ requests <- function(year = 'all', answer = F, search) {
   }
 
   tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
+
+  }
+
   new <- Sys.time() - old # calculate difference
   print(paste0('Consulta finalizada em ', round(new, 2),' segundos.'))
   print(paste0('Query completed in ', round(new, 2),' seconds'))

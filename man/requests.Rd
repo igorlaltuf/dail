@@ -4,7 +4,7 @@
 \alias{requests}
 \title{Queries the requests made through the Brazilian Right to Information Law}
 \usage{
-requests(year = "all", answer = F, search)
+requests(year = "all", answer = F, search = "all")
 }
 \arguments{
 \item{year}{selects the years which data will be downloaded}
