@@ -10,8 +10,6 @@
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
 <!-- badges: end -->
 
-*Versão GitHub: 1.2*
-
 O pacote DAIL (Data from Access to Information Law) permite acessar via
 R - no âmbito do Executivo Federal - os dados dos pedidos e recursos
 solicitados via [Lei de Acesso à
