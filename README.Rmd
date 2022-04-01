@@ -124,7 +124,6 @@ Para citar em trabalhos, use:
 citation('dail')
 ```
 
-
 ## Dicionário de dados
 
 ### Pedidos
@@ -144,7 +143,7 @@ citation('dail')
 - Data Resposta: data da resposta ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
 - Resposta: resposta ao pedido;
 - Decisão: tipo resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
-- Especificação Decisão: subtipo da resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
+- Especificação Decisão: subtipo da resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação" );
 
 
 ### Recursos

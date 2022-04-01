@@ -167,7 +167,7 @@ citation('dail')
 -   Decisão: tipo resposta dada ao pedido (campo em branco para pedidos
     que ainda estejam na situação “Em Tramitação”);
 -   Especificação Decisão: subtipo da resposta dada ao pedido (campo em
-    branco para pedidos que ainda estejam na situação “Em Tramitação”);
+    branco para pedidos que ainda estejam na situação “Em Tramitação” );
 
 ### Recursos
 
