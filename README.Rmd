@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # dail <img src="man/figures/logo.png" align="right" height="139" />
 
 <!-- badges: start -->
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dail)](https://cran.r-project.org/package=dail)     [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/dail)](https://CRAN.R-project.org/package=dail)        [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
+
 <!-- badges: end -->
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via R - no âmbito do Executivo Federal - os dados dos pedidos e recursos solicitados via [Lei de Acesso à Informação](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm) (LAI). No site da Controladoria-Geral da União (CGU) estão disponíveis as estatísticas dos pedidos e recursos desde o ano de 2012. Entretanto, os conteúdos dos pedidos, das respostas e dos recursos foram disponibilizados apenas a partir de 2015. Segundo o órgão, isso se dá em função das necessidades de regulamentação e da prévia orientação/capacitação operacional dos órgãos federais para tal abertura de dados, o que só aconteceu em 18 de maio de 2015 por meio da [Portaria Interministerial nº 1.254/2015](https://www.gov.br/acessoainformacao/pt-br/assuntos/legislacao-relacionada-1/cgu-prt-inter-1254.pdf). Por esta razão não é possível acessar os dados contendo os pedidos e recursos entre 2012 e 2014.
@@ -143,7 +143,7 @@ citation('dail')
 - Data Resposta: data da resposta ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
 - Resposta: resposta ao pedido;
 - Decisão: tipo resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
-- Especificação Decisão: subtipo da resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação" );
+- Especificação Decisão: subtipo da resposta dada ao pedido (campo em branco para pedidos que ainda estejam na situação "Em Tramitação");
 
 
 ### Recursos

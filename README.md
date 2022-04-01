@@ -4,10 +4,6 @@
 # dail <img src="man/figures/logo.png" align="right" height="139" />
 
 <!-- badges: start -->
-
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dail)](https://cran.r-project.org/package=dail)
-[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/dail)](https://CRAN.R-project.org/package=dail)
-[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
 <!-- badges: end -->
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
@@ -167,7 +163,7 @@ citation('dail')
 -   Decisão: tipo resposta dada ao pedido (campo em branco para pedidos
     que ainda estejam na situação “Em Tramitação”);
 -   Especificação Decisão: subtipo da resposta dada ao pedido (campo em
-    branco para pedidos que ainda estejam na situação “Em Tramitação” );
+    branco para pedidos que ainda estejam na situação “Em Tramitação”);
 
 ### Recursos
 
