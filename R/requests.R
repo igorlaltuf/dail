@@ -13,16 +13,10 @@
 #' \dontrun{requests(search = 'PAC')}
 #' @export
 requests <- function(year = 'all', answer = F, search = 'all') {
-  old <- Sys.time() # to calculate execution time
-
   if (answer == F) col_filter <- '.detalhamento'
   if (answer == T) col_filter <- '.resposta'
   year.options <- c(2015:format(Sys.Date(), "%Y"))
   links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
-  # if the user does not enter the year, data for all years will be downloaded
-  if (year == 'all') {
-    year <- year.options
-  }
   protocolo <- palavras <- NULL
   `%!in%` = Negate(`%in%`) # creates operator
   if(sum(stringr::str_count(search, '\\w+')) > 1){
@@ -39,6 +33,11 @@ requests <- function(year = 'all', answer = F, search = 'all') {
     dplyr::select(2,4:13,15,18:21)
   dir.temp <- tempdir()
 
+  # if the user does not enter the year, data for all years will be downloaded
+  if ('all' %in% year) {
+    year <- year.options
+  }
+
   # allows to include more than one year at a time with a vector
   for(i in year) {
     year <- paste0('link', i)
@@ -47,11 +46,6 @@ requests <- function(year = 'all', answer = F, search = 'all') {
 
     # check if the files of the years have already been downloaded
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
-
-    # used to select the file to extract
-    # data <- Sys.Date()
-    # pontos <- "a1~!@#$%^&*(){}_+:\"<>?,./;'[]-="
-    # dia.arquivo <- stringr::str_replace_all(data, "[[:punct:]]", "")
 
     # download_lai
     #
@@ -88,47 +82,45 @@ requests <- function(year = 'all', answer = F, search = 'all') {
     tabela.final <- tabela
   } else {
 
-  # Optimize search to reduce RAM consumption
-  tabela.final <-  data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
-  colnames(tabela.final) <- nomes.colunas
-  tabela.final <- tabela.final %>%
-    dplyr::select(2,4:13,15,18:21)
-
-  n <- 10000
-  nr <- nrow(tabela)
-  lista.tabelas <- split(tabela, rep(1:ceiling(nr/n), each = n, length.out = nr))
-  rm(list = 'tabela')
-
-  for(i in 1:length(lista.tabelas)){
-    # creates a partial table
-    tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
-      tidytext::unnest_tokens('palavras', paste0('X', i, col_filter), drop = F) %>%
-      dplyr::filter(palavras %in% search) %>%
-      unique()
-
-    colnames(tabela.parcial) <- c('protocolo','orgao','situacao','data_registro','resumo','detalhamento','prazo',
-                                  'foi_prorrogado','foi_reencaminhado','forma_resposta','origem_da_solicitacao',
-                                  'assunto','data_resposta','resposta','decisao','especificacao_decisao','palavras')
-
-    tabela.final <- rbind(tabela.final, tabela.parcial)
-  }
-
-  if(sum(stringr::str_count(search, '\\w+')) > 1){
-    count <- tabela.final %>%
-      dplyr::group_by(protocolo) %>%
-      dplyr::count()
-
+    # Optimize search to reduce RAM consumption
+    tabela.final <- data.frame(matrix(NA, nrow = 0, ncol = 21)) # Create empty data frame
+    colnames(tabela.final) <- nomes.colunas
     tabela.final <- tabela.final %>%
-      dplyr::left_join(count) %>%
-      dplyr::filter(n >= sum(stringr::str_count(search, '\\w+')))
+      dplyr::select(2,4:13,15,18:21)
+
+    n <- 10000
+    nr <- nrow(tabela)
+    lista.tabelas <- split(tabela, rep(1:ceiling(nr/n), each = n, length.out = nr))
+    rm(list = 'tabela')
+
+    for(i in 1:length(lista.tabelas)){
+      # creates a partial table
+      tabela.parcial <- as.data.frame(lista.tabelas[i]) %>%
+        tidytext::unnest_tokens('palavras', paste0('X', i, col_filter), drop = F) %>%
+        dplyr::filter(palavras %in% search) %>%
+        unique()
+
+      colnames(tabela.parcial) <- c('protocolo','orgao','situacao','data_registro','resumo','detalhamento','prazo',
+                                    'foi_prorrogado','foi_reencaminhado','forma_resposta','origem_da_solicitacao',
+                                    'assunto','data_resposta','resposta','decisao','especificacao_decisao','palavras')
+
+      tabela.final <- rbind(tabela.final, tabela.parcial)
+    }
+
+    if(sum(stringr::str_count(search, '\\w+')) > 1){
+      count <- tabela.final %>%
+        dplyr::group_by(protocolo) %>%
+        dplyr::count()
+
+      tabela.final <- tabela.final %>%
+        dplyr::left_join(count) %>%
+        dplyr::filter(n >= sum(stringr::str_count(search, '\\w+')))
+    }
+
+    tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
+
   }
 
-  tabela.final <- tabela.final %>% dplyr::select(1:16) %>% unique()
-
-  }
-
-  new <- Sys.time() - old # calculate difference
-  print(paste0('Consulta finalizada em ', round(new, 2),' segundos.'))
-  print(paste0('Query completed in ', round(new, 2),' seconds'))
+  print('Consulta finalizada.')
   return(tabela.final)
 }
