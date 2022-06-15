@@ -72,7 +72,7 @@ appeals <- function(year = 'all', answer = F, search = 'all') {
     # read the files
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
     caminho.arquivo <- stringr::str_subset(lista.arquivos.locais, paste0("Recursos_csv_",i))
-    var <- readr::read_csv2(file = caminho.arquivo, col_names = FALSE, quote = '\'', locale = readr::locale(encoding="UTF-16LE"))
+    var <- readr::read_csv2(file = caminho.arquivo, col_names = FALSE, quote = '\'', show_col_types = FALSE, locale = readr::locale(encoding="UTF-16LE"))
     colnames(var) <- nomes.colunas
 
     tabela <- rbind(tabela, var)
