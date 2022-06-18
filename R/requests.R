@@ -78,7 +78,7 @@ requests <- function(year = 'all', answer = F, search = 'all') {
     rm(list = 'var') # remove variável para liberar RAM
   }
 
-  if (search == 'all') {
+  if ('all' %in% search) {
     tabela.final <- tabela
   } else {
 
