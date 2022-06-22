@@ -19,7 +19,7 @@ appeals <- function(year = 'all', answer = F, search = 'all') {
 
   year.options <- c(2015:format(Sys.Date(), "%Y"))
   links <- paste0('https://dadosabertos-download.cgu.gov.br/FalaBR/Arquivos_FalaBR_Filtrado/Arquivos_csv_', year.options, '.zip')
-  protocolo <- palavras <- NULL
+  protocolo <- palavras <- id_recurso <- NULL
   `%!in%` = Negate(`%in%`) # creates operator
   if(sum(stringr::str_count(search, '\\w+')) > 1){
     search <- unlist(strsplit(search, split = " "))
