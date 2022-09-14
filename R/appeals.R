@@ -53,7 +53,7 @@ appeals <- function(year = 'all', answer = F, search = 'all') {
     #
     # Download data from the CGU for the selected years.
     download_lai <- function() {
-      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '\\')) # fazer com que o nome do arquivo seja dinâmico
+      download.file(links[x], paste(dir.temp, stringr::str_sub(links[x],start = -21), sep = '/')) # fazer com que o nome do arquivo seja dinâmico
     }
 
     # checks if the file has been previously downloaded
