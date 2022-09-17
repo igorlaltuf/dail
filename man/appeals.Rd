@@ -4,14 +4,16 @@
 \alias{appeals}
 \title{Queries the appeals made through the Brazilian Right to Information Law}
 \usage{
-appeals(year = "all", answer = F, search = "all")
+appeals(year = "all", agency = "all", search = "all", answer = F)
 }
 \arguments{
-\item{year}{selects the years which data will be downloaded}
+\item{year}{selects the years which data will be downloaded. integer.}
 
-\item{answer}{if true, fetches the content of the search argument in the appeals responses}
+\item{agency}{selects the public agency to be searched. see the available agencies in agencies_initials. character.}
 
-\item{search}{selects the keyword to be searched}
+\item{search}{selects the keyword to be searched. character.}
+
+\item{answer}{if true, fetches the content of the search argument in the appeals responses. boolean.}
 }
 \value{
 a dataframe with appeals containing the keyword

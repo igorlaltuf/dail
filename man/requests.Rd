@@ -4,14 +4,16 @@
 \alias{requests}
 \title{Queries the requests made through the Brazilian Right to Information Law}
 \usage{
-requests(year = "all", answer = F, search = "all")
+requests(year = "all", agency = "all", search = "all", answer = F)
 }
 \arguments{
-\item{year}{selects the years which data will be downloaded}
+\item{year}{selects the years which data will be downloaded. integer.}
 
-\item{answer}{if true, fetches the content of the search argument in the request responses}
+\item{agency}{selects the public agency to be searched. see the available agencies in agencies_initials. character.}
 
-\item{search}{selects the keyword to be searched}
+\item{search}{selects the keyword to be searched. character.}
+
+\item{answer}{if true, fetches the content of the search argument in the request responses. boolean.}
 }
 \value{
 a dataframe with requests containing the keyword

@@ -5,7 +5,7 @@
 #' @importFrom utils download.file unzip
 #'
 #' @param year selects the years which data will be downloaded. integer.
-#' @param agency selects the public agency to be searched. character.
+#' @param agency selects the public agency to be searched. see the available agencies in agencies_initials. character.
 #' @param search selects the keyword to be searched. character.
 #' @param answer if true, fetches the content of the search argument in the request responses. boolean.
 #'
