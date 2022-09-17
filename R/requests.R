@@ -5,15 +5,16 @@
 #' @importFrom utils download.file unzip
 #'
 #' @param year selects the years which data will be downloaded. integer.
+#' @param agency selects the public agency to be searched. character.
 #' @param search selects the keyword to be searched. character.
 #' @param answer if true, fetches the content of the search argument in the request responses. boolean.
-#' @param agency selects the public agency to be searched. character.
+#'
 #'
 #' @return a dataframe with requests containing the keyword
 #' @examples
 #' \dontrun{requests(search = 'PAC')}
 #' @export
-requests <- function(year = 'all', answer = F, search = 'all', agency = 'all') {
+requests <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
   if (answer == F) col_filter <- '.detalhamento'
   if (answer == T) col_filter <- '.resposta'
   year.options <- c(2015:format(Sys.Date(), "%Y"))
