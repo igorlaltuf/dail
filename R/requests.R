@@ -4,15 +4,16 @@
 #'
 #' @importFrom utils download.file unzip
 #'
-#' @param year selects the years which data will be downloaded
-#' @param search selects the keyword to be searched
-#' @param answer if true, fetches the content of the search argument in the request responses
+#' @param year selects the years which data will be downloaded. integer.
+#' @param search selects the keyword to be searched. character.
+#' @param answer if true, fetches the content of the search argument in the request responses. boolean.
+#' @param agency selects the public agency to be searched. character.
 #'
 #' @return a dataframe with requests containing the keyword
 #' @examples
 #' \dontrun{requests(search = 'PAC')}
 #' @export
-requests <- function(year = 'all', answer = F, search = 'all') {
+requests <- function(year = 'all', answer = F, search = 'all', agency = 'all') {
   if (answer == F) col_filter <- '.detalhamento'
   if (answer == T) col_filter <- '.resposta'
   year.options <- c(2015:format(Sys.Date(), "%Y"))
@@ -76,6 +77,12 @@ requests <- function(year = 'all', answer = F, search = 'all') {
       dplyr::select(2,4:13,15,18:21)
     tabela <- rbind(tabela, var)
     rm(list = 'var') # remove variável para liberar RAM
+  }
+
+  if ('all' %in% agency) {
+  } else {
+    tabela <- tabela %>%
+      filter(str_detect(orgao, agency))
   }
 
   if ('all' %in% search) {
