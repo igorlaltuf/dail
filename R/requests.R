@@ -83,7 +83,7 @@ requests <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
   if ('all' %in% agency) {
   } else {
     tabela <- tabela %>%
-      filter(str_detect(orgao, agency))
+      dplyr::filter(stringr::str_detect(orgao, agency))
   }
 
   if ('all' %in% search) {
