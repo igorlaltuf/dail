@@ -9,7 +9,6 @@ df8 <- requests(agency = 'UFF', year = 2015, search = 'curso') # test the argume
 df9 <- requests(agency = 'UFF', year = 2015, search = 'curso', answer = T) # test the arguments agency, year, answer and search
 df10 <- requests(agency = 'UFF', year = c(2015, 2016), search = 'curso', answer = T) # test the arguments agency, year, answer and search
 
-
 # tests
 
 test_that("able to download the full database", {
