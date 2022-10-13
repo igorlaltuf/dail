@@ -8,6 +8,8 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dail)](https://cran.r-project.org/package=dail)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/dail)](https://CRAN.R-project.org/package=dail)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
+[![“Buy Me A
+Coffee”](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/igorlaltuf)
 <!-- badges: end -->
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
