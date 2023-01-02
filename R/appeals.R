@@ -49,7 +49,7 @@ appeals <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
     x <- match(year, x) # returns the position of the matching string
 
     # check if the files of the years have already been downloaded
-    lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
+    lista.arquivos.locais <- list.files(path = dir.temp, pattern = "\\.csv", full.names = TRUE)
 
     # download_lai
     #
@@ -60,24 +60,37 @@ appeals <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
 
     # checks if the file has been previously downloaded
     if(any(grepl(paste0('Recursos_csv_', i), lista.arquivos.locais)) == T) {
-      print(paste0('Os arquivos de ', i,' foram baixados anteriormente.'))
+      print(paste0('Data for the year  ', i,' found locally.'))
     } else{
-      download_lai()
+      if (RCurl::url.exists(links[x]) == F) { # network is down = message (not an error anymore)
+        message("No internet connection or data source broken.")
+        return(NULL)
+      } else { # network is up = proceed to download
+        message(paste0("Downloading ", i," dataset."))
+        download_lai()
+      } # /if - network up or down
+
+
       # list zip files from the year
       lista.arquivos <- list.files(path = dir.temp, pattern = paste0("Arquivos_csv_", i, ".zip"), full.names = TRUE)
       arquivo.pedido <- unzip(zipfile = lista.arquivos, list = T)
       arquivo.pedido <- grep("Recursos", arquivo.pedido$Name, value = TRUE)
       # extract only requests files the downloaded files
       unzip(zipfile = lista.arquivos, exdir = dir.temp, files = arquivo.pedido)
+
+
     }
 
     # read the files
     lista.arquivos.locais <- list.files(path = dir.temp, pattern = "*.csv", full.names = TRUE)
-    caminho.arquivo <- stringr::str_subset(lista.arquivos.locais, paste0("Recursos_csv_",i))
+    caminho.arquivo <- stringr::str_subset(lista.arquivos.locais, paste0("_Recursos_csv_",i))
     var <- readr::read_csv2(file = caminho.arquivo, col_names = FALSE, quote = '\'', show_col_types = FALSE, locale = readr::locale(encoding="UTF-16LE"))
+    if(ncol(var) == 1) { # error message
+      message(paste0("Inconsistent data for the year ", i, "."))
+    } else{
     colnames(var) <- nomes.colunas
-
     tabela <- rbind(tabela, var)
+    }
     rm(list = 'var') # remove variável para liberar RAM
   }
 
@@ -130,6 +143,6 @@ appeals <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
 
   }
 
-  print('Consulta finalizada.')
+  message('Ended query.')
   return(tabela.final)
 }

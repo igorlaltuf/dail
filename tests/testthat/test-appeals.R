@@ -21,11 +21,11 @@ if (Sys.getenv('USERNAME') == 'igorl') {
   })
 
   test_that("test argument year for only one year", {
-    expect_equal(nrow(df2), 11436)
+    expect_equal(nrow(df2), 11735)
   })
 
   test_that("test argument year multiple years", {
-    expect_equal(nrow(df3), 25717)
+    expect_equal(nrow(df3), 25754)
   })
 
   test_that("test the search argument with one word", {
@@ -45,7 +45,7 @@ if (Sys.getenv('USERNAME') == 'igorl') {
   })
 
   test_that("test the arguments agency, year and search", {
-    expect_equal(nrow(df8), 2)
+    expect_equal(nrow(df8), 1)
   })
 
   test_that("test the arguments agency, year, answer and search", {

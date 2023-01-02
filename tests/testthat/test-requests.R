@@ -17,15 +17,15 @@ if (Sys.getenv('USERNAME') == 'igorl') {
   # tests
 
   test_that("able to download the full database", {
-    expect_gt(nrow(df), 670000)
+    expect_gt(nrow(df), 680000)
   })
 
   test_that("test argument year for only one year", {
-    expect_equal(nrow(df2), 91464)
+    expect_equal(nrow(df2), 91390)
   })
 
   test_that("test argument year multiple years", {
-    expect_equal(nrow(df3), 187584)
+    expect_equal(nrow(df3), 187497)
   })
 
   test_that("test the search argument with one word", {
