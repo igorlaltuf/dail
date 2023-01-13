@@ -2,6 +2,7 @@
 
 export("%>%")
 export(appeals)
+export(corporateCardExpenses)
 export(requests)
 importFrom(magrittr,"%>%")
 importFrom(utils,download.file)
