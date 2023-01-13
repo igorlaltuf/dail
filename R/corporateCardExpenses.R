@@ -10,7 +10,7 @@
 #' @export
 corporateCardExpenses <- function() {
 
-cdic <- cpf_cnpj_fornecedor <- cpf_servidor <- data_pgto <- nome_fornecedor <- subelemento_de_despesa <- tipo <- valor <- NULL
+cdic <- cpf_cnpj_fornecedor <- cpf_servidor <- data_pgto <- nome_fornecedor <- presidente <- valor_deflacionado <- subelemento_de_despesa <- tipo <- valor <- NULL
 
 link <- "https://www.gov.br/secretariageral/pt-br/acesso-a-informacao/informacoes-classificadas-e-desclassificadas/Planilha12003a2022.csv"
 
