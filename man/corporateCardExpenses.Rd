@@ -3,6 +3,9 @@
 \name{corporateCardExpenses}
 \alias{corporateCardExpenses}
 \title{Queries presidential expenses with the corporate card}
+\usage{
+corporateCardExpenses()
+}
 \value{
 a dataframe with the data from 2002 to 2022.
 }

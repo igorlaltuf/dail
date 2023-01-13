@@ -8,11 +8,9 @@
 #' @examples
 #' df <- corporateCardExpenses()
 #' @export
-#' @name corporateCardExpenses
-utils::globalVariables(c("cdic","cpf_cnpj_fornecedor", "cpf_servidor", "data_pgto",
-                         "nome_fornecedor", "subelemento_de_despesa", "tipo", "valor"))
-
 corporateCardExpenses <- function() {
+
+cdic <- cpf_cnpj_fornecedor <- cpf_servidor <- data_pgto <- nome_fornecedor <- subelemento_de_despesa <- tipo <- valor <- NULL
 
 link <- "https://www.gov.br/secretariageral/pt-br/acesso-a-informacao/informacoes-classificadas-e-desclassificadas/Planilha12003a2022.csv"
 
