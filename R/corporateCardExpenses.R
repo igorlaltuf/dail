@@ -20,8 +20,6 @@ df_credit_card <- readr::read_csv2(link, locale = readr::locale(encoding = "lati
                                    show_col_types = FALSE) %>%
   janitor::clean_names() %>%
   dplyr::filter(data_pgto != c('Fonte: SUPRIM', 'At 19/12/2022')) %>%
-  dplyr::select(nome_fornecedor, data_pgto, cpf_servidor, cpf_cnpj_fornecedor,
-                tipo, valor, subelemento_de_despesa, cdic) %>%
   dplyr::mutate(data_pgto = lubridate::dmy(data_pgto),
                 valor = readr::parse_number(stringr::str_remove(valor, "R\\$ "),
                                      locale = readr::locale(decimal_mark = ",")),
@@ -31,7 +29,9 @@ df_credit_card <- readr::read_csv2(link, locale = readr::locale(encoding = "lati
                   lubridate::year(data_pgto) <= 2018 ~ "Temer",
                   lubridate::year(data_pgto) <= 2022 ~ "Bolsonaro"),
                 valor_deflacionado = round(deflateBR::deflate(valor, data_pgto, "12/2022", "ipca"), 2)
-                )
+                ) %>%
+  dplyr::select(nome_fornecedor, cpf_cnpj_fornecedor, data_pgto, cpf_servidor, cdic,
+                presidente, subelemento_de_despesa, tipo, valor, valor_deflacionado)
 
 return(df_credit_card)
 

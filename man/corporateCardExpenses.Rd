@@ -14,5 +14,5 @@ Downloads data from 2002 to 2022 and return it in the form of a dataframe.
 Deflated values refer to values in November 2022.
 }
 \examples{
-df <- corporateCardExpenses()
+\dontrun{df <- corporateCardExpenses()}
 }
