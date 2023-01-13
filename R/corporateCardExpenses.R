@@ -6,7 +6,7 @@
 #' @importFrom utils download.file unzip
 #' @return a dataframe with the data from 2002 to 2022.
 #' @examples
-#' df <- corporateCardExpenses()
+#' \dontrun{df <- corporateCardExpenses()}
 #' @export
 corporateCardExpenses <- function() {
 
