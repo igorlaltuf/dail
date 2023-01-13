@@ -1,6 +1,6 @@
 Package: dail
 Title: Data from Access to Information Law
-Version: 1.4.2
+Version: 1.5
 Authors@R: 
     person("Igor", "Laltuf", , "igorlaltuf@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5614-4404"))
@@ -11,7 +11,10 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
+    deflateBR (>= 1.1.2),
     dplyr,
+    janitor,
+    lubridate,
     magrittr,
     RCurl,
     readr,
@@ -23,3 +26,5 @@ Suggests:
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
+Remotes:  
+    meirelesff/deflatebr

@@ -2,13 +2,16 @@
 #'
 #' Downloads data from 2002 to 2022 and return it in the form of a dataframe.
 #' Deflated values refer to values in November 2022.
+#'
 #' @importFrom utils download.file unzip
-#'
-#'
 #' @return a dataframe with the data from 2002 to 2022.
 #' @examples
-#' \dontrun{df <- corporateCardExpenses()}
+#' df <- corporateCardExpenses()
 #' @export
+#' @name corporateCardExpenses
+utils::globalVariables(c("cdic","cpf_cnpj_fornecedor", "cpf_servidor", "data_pgto",
+                         "nome_fornecedor", "subelemento_de_despesa", "tipo", "valor"))
+
 corporateCardExpenses <- function() {
 
 link <- "https://www.gov.br/secretariageral/pt-br/acesso-a-informacao/informacoes-classificadas-e-desclassificadas/Planilha12003a2022.csv"
