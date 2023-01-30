@@ -10,7 +10,7 @@
 #' @export
 corporateCardExpenses <- function() {
 
-cdic <- cpf_cnpj_fornecedor <- cpf_servidor <- data_pgto <- nome_fornecedor <- presidente <- valor_deflacionado <- subelemento_de_despesa <- tipo <- valor <- NULL
+cdic <- cpf_cnpj_fornecedor <- cpf_servidor <- data_pgto <- nome_fornecedor <- valor_deflacionado <- presidente <- subelemento_de_despesa <- tipo <- valor <- NULL
 
 link <- "https://www.gov.br/secretariageral/pt-br/acesso-a-informacao/informacoes-classificadas-e-desclassificadas/Planilha12003a2022.csv"
 
@@ -19,7 +19,7 @@ message('Please wait for the download to complete.')
 df_credit_card <- readr::read_csv2(link, locale = readr::locale(encoding = "latin1"),
                                    show_col_types = FALSE) %>%
   janitor::clean_names() %>%
-  dplyr::filter(data_pgto != c('Fonte: SUPRIM', 'At 19/12/2022')) %>%
+  dplyr::filter(data_pgto != c('Fonte: SUPRIM', 'At  19/12/2022')) %>%
   dplyr::mutate(data_pgto = lubridate::dmy(data_pgto),
                 valor = readr::parse_number(stringr::str_remove(valor, "R\\$ "),
                                      locale = readr::locale(decimal_mark = ",")),
@@ -28,8 +28,7 @@ df_credit_card <- readr::read_csv2(link, locale = readr::locale(encoding = "lati
                   lubridate::year(data_pgto) <= 2016 ~ "Dilma",
                   lubridate::year(data_pgto) <= 2018 ~ "Temer",
                   lubridate::year(data_pgto) <= 2022 ~ "Bolsonaro"),
-                valor_deflacionado = round(deflateBR::deflate(valor, data_pgto, "12/2022", "ipca"), 2)
-                ) %>%
+                valor_deflacionado = round(deflateBR::deflate(valor, data_pgto, "12/2022", "ipca"), 2)) %>%
   dplyr::select(nome_fornecedor, cpf_cnpj_fornecedor, data_pgto, cpf_servidor, cdic,
                 presidente, subelemento_de_despesa, tipo, valor, valor_deflacionado)
 

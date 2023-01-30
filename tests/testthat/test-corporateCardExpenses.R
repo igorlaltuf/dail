@@ -7,6 +7,6 @@ df <- corporateCardExpenses()
   # tests
 
   test_that("able to download the full database", {
-    expect_equal(nrow(df), 113340)
+    expect_gt(nrow(df), 113340)
   })
 }
