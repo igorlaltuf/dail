@@ -1,6 +1,6 @@
 Package: dail
 Title: Data from Access to Information Law
-Version: 1.5.1
+Version: 1.5.2
 Authors@R: 
     person("Igor", "Laltuf", , "igorlaltuf@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5614-4404"))
