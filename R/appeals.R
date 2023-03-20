@@ -60,7 +60,7 @@ appeals <- function(year = 'all', agency = 'all', search = 'all', answer = F) {
 
     # checks if the file has been previously downloaded
     if(any(grepl(paste0('Recursos_csv_', i), lista.arquivos.locais)) == T) {
-      print(paste0('Data for the year  ', i,' found locally.'))
+      message(paste0('Data for the year  ', i,' found locally.'))
     } else{
       if (RCurl::url.exists(links[x]) == F) { # network is down = message (not an error anymore)
         message("No internet connection or data source broken.")
