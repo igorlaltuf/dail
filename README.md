@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dail)](https://cran.r-project.org/package=dail)
-[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/dail)](https://CRAN.R-project.org/package=dail)
-[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dail)](https://cran.r-project.org/package=dail)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/dail)](https://CRAN.R-project.org/package=dail)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/dail)](https://CRAN.R-project.org/package=dail)
 <!-- badges: end -->
 
 O pacote DAIL (Data from Access to Information Law) permite acessar via
@@ -127,13 +127,12 @@ Para citar em trabalhos, use:
 
 ``` r
 citation('dail')
-#> 
-#> To cite dail in publications use:
+#> Para citar o pacote 'dail' em publicações use:
 #> 
 #>   LALTUF, Igor. Data from Access to Information Law. 2022. Available
 #>   in: https://github.com/igorlaltuf/dail.
 #> 
-#> A BibTeX entry for LaTeX users is
+#> Uma entrada BibTeX para usuários(as) de LaTeX é
 #> 
 #>   @Misc{,
 #>     title = {Data from Access to Information Law - DAIL},
@@ -147,51 +146,51 @@ citation('dail')
 
 ### Pedidos
 
--   Protocolo: número do protocolo do pedido;
--   Orgão: nome do órgão destinatário do pedido;
--   Situação: descrição da situação do pedido;
--   Data Registro: data de abertura do pedido;
--   Resumo: resumo do pedido;
--   Detalhamento: detalhamento do pedido;
--   Prazo: data limite para atendimento ao pedido;
--   Foi Prorrogado: informa se houve prorrogação do prazo do pedido;
--   Foi Reencaminhado: informa se o pedido foi reencaminhado;
--   Forma Resposta: tipo de resposta escolhida pelo solicitante na
-    abertura do pedido;
--   Origem Solicitacao: informa se o pedido foi aberto em um Balcão SIC
-    ou pela Internet;
--   Assunto: assunto do pedido atribuído pel SIC;
--   Data Resposta: data da resposta ao pedido (campo em branco para
-    pedidos que ainda estejam na situação “Em Tramitação”);
--   Resposta: resposta ao pedido;
--   Decisão: tipo resposta dada ao pedido (campo em branco para pedidos
-    que ainda estejam na situação “Em Tramitação”);
--   Especificação Decisão: subtipo da resposta dada ao pedido (campo em
-    branco para pedidos que ainda estejam na situação “Em Tramitação”);
+- Protocolo: número do protocolo do pedido;
+- Orgão: nome do órgão destinatário do pedido;
+- Situação: descrição da situação do pedido;
+- Data Registro: data de abertura do pedido;
+- Resumo: resumo do pedido;
+- Detalhamento: detalhamento do pedido;
+- Prazo: data limite para atendimento ao pedido;
+- Foi Prorrogado: informa se houve prorrogação do prazo do pedido;
+- Foi Reencaminhado: informa se o pedido foi reencaminhado;
+- Forma Resposta: tipo de resposta escolhida pelo solicitante na
+  abertura do pedido;
+- Origem Solicitacao: informa se o pedido foi aberto em um Balcão SIC ou
+  pela Internet;
+- Assunto: assunto do pedido atribuído pel SIC;
+- Data Resposta: data da resposta ao pedido (campo em branco para
+  pedidos que ainda estejam na situação “Em Tramitação”);
+- Resposta: resposta ao pedido;
+- Decisão: tipo resposta dada ao pedido (campo em branco para pedidos
+  que ainda estejam na situação “Em Tramitação”);
+- Especificação Decisão: subtipo da resposta dada ao pedido (campo em
+  branco para pedidos que ainda estejam na situação “Em Tramitação”);
 
 ### Recursos
 
--   IdRecurso: identificador único do recurso (não mostrado no sistema);
--   IdRecursoPrecedente: identificador único do recurso que precedeu
-    este (não mostrado no sistema e em branco no caso de Recursos de 1ª
-    Instância e Reclamações);
--   DescRecurso: descrição do recurso;
--   IdPedido: identificador único do pedido ao qual o recurso pertence
-    (não mostrado no sistema);
--   IdSolicitante: identificador único do solicitante (não mostrado no
-    sistema);
--   ProtocoloPedido: número do protocolo do pedido ao qual o recurso
-    pertence;
--   OrgaoDestinatario: nome do órgão destinatário do recurso;
--   Instancia: descrição da instância do recurso;
--   Situacao: descrição da situação do recurso;
--   DataRegistro: data de abertura do recurso;
--   PrazoAtendimento: data limite para atendimento ao recurso;
--   OrigemSolicitacao: informa se o recurso foi aberto em um Balcão SIC
-    ou pela Internet;
--   TipoRecurso: motivo de abertura do recurso;
--   DataResposta: data da resposta ao recurso (campo em branco para
-    recursos que ainda estejam na situação “Em Tramitação”);
--   RespostaRecurso: resposta ao recurso;
--   TipoResposta: tipo resposta dada ao recurso (campo em branco para
-    recursos que ainda estejam na situação “Em Tramitação”);
+- IdRecurso: identificador único do recurso (não mostrado no sistema);
+- IdRecursoPrecedente: identificador único do recurso que precedeu este
+  (não mostrado no sistema e em branco no caso de Recursos de 1ª
+  Instância e Reclamações);
+- DescRecurso: descrição do recurso;
+- IdPedido: identificador único do pedido ao qual o recurso pertence
+  (não mostrado no sistema);
+- IdSolicitante: identificador único do solicitante (não mostrado no
+  sistema);
+- ProtocoloPedido: número do protocolo do pedido ao qual o recurso
+  pertence;
+- OrgaoDestinatario: nome do órgão destinatário do recurso;
+- Instancia: descrição da instância do recurso;
+- Situacao: descrição da situação do recurso;
+- DataRegistro: data de abertura do recurso;
+- PrazoAtendimento: data limite para atendimento ao recurso;
+- OrigemSolicitacao: informa se o recurso foi aberto em um Balcão SIC ou
+  pela Internet;
+- TipoRecurso: motivo de abertura do recurso;
+- DataResposta: data da resposta ao recurso (campo em branco para
+  recursos que ainda estejam na situação “Em Tramitação”);
+- RespostaRecurso: resposta ao recurso;
+- TipoResposta: tipo resposta dada ao recurso (campo em branco para
+  recursos que ainda estejam na situação “Em Tramitação”);
